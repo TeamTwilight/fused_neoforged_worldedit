@@ -22,8 +22,6 @@ package com.sk89q.worldedit.forge.net.handler;
 import com.sk89q.worldedit.LocalSession;
 import com.sk89q.worldedit.forge.ForgePlayer;
 import com.sk89q.worldedit.forge.ForgeWorldEdit;
-import net.minecraft.network.Connection;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.network.NetworkEvent;
 import net.neoforged.neoforge.network.event.EventNetworkChannel;
@@ -45,16 +43,11 @@ public final class WECUIPacketHandler {
         HANDLER.addListener(WECUIPacketHandler::onPacketData);
     }
 
-    public static void onPacketData(NetworkEvent.ServerCustomPayloadEvent event) {
+    public static void onPacketData(NetworkEvent.ClientCustomPayloadEvent event) {
         ServerPlayer player = event.getSource().getSender();
         LocalSession session = ForgeWorldEdit.inst.getSession(player);
         String text = event.getPayload().toString(StandardCharsets.UTF_8);
         final ForgePlayer actor = adaptPlayer(player);
         session.handleCUIInitializationMessage(text, actor);
     }
-
-    public static void send(Connection connection, FriendlyByteBuf friendlyByteBuf) {
-        HANDLER.send(friendlyByteBuf, connection);
-    }
-
 }

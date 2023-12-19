@@ -409,7 +409,7 @@ public class ForgeWorld extends AbstractWorld {
             );
         }
         return chunkLoadings;
-    }
+    }//*/
 
     @Nullable
     private static ResourceKey<ConfiguredFeature<?, ?>> createTreeFeatureGenerator(TreeType type) {

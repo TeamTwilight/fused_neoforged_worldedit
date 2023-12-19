@@ -1,7 +1,7 @@
 # The name of the mod loader type to load - for regular FML @Mod mods it should be javafml
 modLoader="javafml"
 # A version range to match for said mod loader - for regular FML @Mod it will be the minecraft version (without the 1.)
-loaderVersion="[24,)"
+loaderVersion="[1,)"
 # A URL to refer people to when problems occur with this mod
 issueTrackerURL="https://discord.gg/enginehub"
 # A URL for the "homepage" for this mod, displayed in the mod UI
@@ -16,7 +16,7 @@ license="GPL"
 # The modid of the mod
 modId="worldedit"
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
-version="${version}"
+version="7.2-custom_neoforged"
  # A display name for the mod
 displayName="WorldEdit"
 # The description text for the mod (multi line!)
@@ -26,12 +26,12 @@ WorldEdit is an easy-to-use in-game world editor for Minecraft, supporting both 
 [[dependencies.worldedit]]
     modId="minecraft"
     mandatory=true
-    versionRange="[${minecraftVersion},${nextMajorMinecraftVersion})"
+    versionRange="[1.20.3,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.worldedit]]
-    modId="forge"
+    modId="neoforge"
     mandatory=true
-    versionRange="[${forgeVersion},)"
+    versionRange="[20.3.1,)"
     ordering="NONE"
     side="BOTH"

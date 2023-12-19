@@ -35,6 +35,7 @@ import com.sk89q.worldedit.util.HandSide;
 import com.sk89q.worldedit.util.Location;
 import com.sk89q.worldedit.util.formatting.WorldEditText;
 import com.sk89q.worldedit.util.formatting.component.TextUtils;
+import io.netty.buffer.ByteBuf;
 import net.kyori.text.Component;
 import net.kyori.text.serializer.gson.GsonComponentSerializer;
 import com.sk89q.worldedit.world.World;
@@ -45,8 +46,10 @@ import io.netty.buffer.Unpooled;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.network.protocol.game.ClientboundBlockUpdatePacket;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -131,8 +134,12 @@ public class ForgePlayer extends AbstractPlayerActor {
         if (params.length > 0) {
             send = send + "|" + StringUtil.joinString(params, "|");
         }
-        FriendlyByteBuf buffer = new FriendlyByteBuf(Unpooled.copiedBuffer(send, StandardCharsets.UTF_8));
-        WECUIPacketHandler.send(this.player.connection.connection, buffer);
+
+        FriendlyByteBuf buffer = new FriendlyByteBuf(Unpooled.buffer());
+        buffer.writeResourceLocation(new ResourceLocation(ForgeWorldEdit.MOD_ID, ForgeWorldEdit.CUI_PLUGIN_CHANNEL));
+        buffer.writeBytes(Unpooled.copiedBuffer(send, StandardCharsets.UTF_8));
+        ClientboundCustomPayloadPacket packet = new ClientboundCustomPayloadPacket(buffer);
+        this.player.connection.send(packet);
     }
 
     private void sendMessage(net.minecraft.network.chat.Component textComponent) {
