@@ -25,13 +25,16 @@ WorldEdit is an easy-to-use in-game world editor for Minecraft, supporting both 
 '''
 [[dependencies.worldedit]]
     modId="minecraft"
-    mandatory=true
+    type="required"
     versionRange="[1.20.3,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.worldedit]]
     modId="neoforge"
-    mandatory=true
+    type="required"
     versionRange="[20.3.1,)"
     ordering="NONE"
     side="BOTH"
+
+[[mixins]]
+config = "worldedit-neoforge.mixins.json"
