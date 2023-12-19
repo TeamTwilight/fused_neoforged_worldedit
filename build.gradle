@@ -29,6 +29,17 @@ minecraft.accessTransformers.file rootProject.file('src/main/resources/META-INF/
 runs {
     // applies to all the run configs below
     configureEach {
+        dependencies {
+            runtime "net.kyori:text-api:${TEXT}"
+            runtime "net.kyori:text-serializer-gson:${TEXT}"
+            runtime "net.kyori:text-serializer-legacy:${TEXT}"
+            runtime "net.kyori:text-serializer-plain:${TEXT}"
+
+            runtime "org.enginehub.piston:core:${PISTON}"
+            runtime "org.enginehub.piston.core-ap:runtime:${PISTON}"
+            runtime "org.enginehub.piston:default-impl:${PISTON}"
+        }
+
         // Recommended logging data for a userdev environment
         // The markers can be added/remove as needed separated by commas.
         // "SCAN": For mods scan.
@@ -89,27 +100,27 @@ dependencies {
     // For all intends and purposes: You can treat this dependency as if it is a normal library you would use.
     implementation "net.neoforged:neoforge:${neo_version}"
 
-    implementation("net.kyori:text-api:${TEXT}")
-    implementation("net.kyori:text-serializer-gson:${TEXT}")
-    implementation("net.kyori:text-serializer-legacy:${TEXT}")
-    implementation("net.kyori:text-serializer-plain:${TEXT}")
+    implementation "net.kyori:text-api:${TEXT}"
+    implementation "net.kyori:text-serializer-gson:${TEXT}"
+    implementation "net.kyori:text-serializer-legacy:${TEXT}"
+    implementation "net.kyori:text-serializer-plain:${TEXT}"
     implementation "com.sk89q.lib:jlibnoise:1.0.0"
     implementation "org.enginehub.piston:core:${PISTON}"
     implementation "org.enginehub.piston.core-ap:runtime:${PISTON}"
     implementation "org.enginehub.piston:default-impl:${PISTON}"
     implementation "org.yaml:snakeyaml:2.0"
-    implementation("org.enginehub.piston.core-ap:annotations:${PISTON}")
-    implementation("org.enginehub.piston.core-ap:processor:${PISTON}")
-    annotationProcessor("org.enginehub.piston.core-ap:annotations:${PISTON}")
-    annotationProcessor("org.enginehub.piston.core-ap:processor:${PISTON}")
+    implementation "org.enginehub.piston.core-ap:annotations:${PISTON}"
+    implementation "org.enginehub.piston.core-ap:processor:${PISTON}"
+    annotationProcessor "org.enginehub.piston.core-ap:annotations:${PISTON}"
+    annotationProcessor "org.enginehub.piston.core-ap:processor:${PISTON}"
     implementation ("com.sk89q:jchronic:0.2.4a") {
         exclude group: "junit", module: "junit"
     }
-    compileOnly("com.google.auto.value:auto-value-annotations:${AUTO_VALUE}")
+    implementation("com.google.auto.value:auto-value-annotations:${AUTO_VALUE}")
     annotationProcessor("com.google.auto.value:auto-value:${AUTO_VALUE}")
     antlr("org.antlr:antlr4:4.9.1")
     implementation("org.antlr:antlr4-runtime:4.9.1")
-    compileOnly("de.schlichtherle:truezip:6.8.4")
+    implementation("de.schlichtherle:truezip:6.8.4")
     implementation("org.mozilla:rhino-runtime:1.7.13")
 
     // Example mod dependency with JEI

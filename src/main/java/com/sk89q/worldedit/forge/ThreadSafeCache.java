@@ -51,13 +51,13 @@ public class ThreadSafeCache {
     }
 
     @SubscribeEvent
-    public void tickStart(TickEvent event) {
+    public void tickStart(TickEvent.ServerTickEvent event) {
         long now = System.currentTimeMillis();
 
         if (now - lastRefresh > REFRESH_DELAY) {
             Set<UUID> onlineIds = new HashSet<>();
 
-            MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+            MinecraftServer server = event.getServer();
             if (server == null) {
                 return;
             }
