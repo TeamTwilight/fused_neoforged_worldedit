@@ -19,6 +19,12 @@ configurations {
 shadowJar {
     archiveClassifier.set('')
     configurations = [project.configurations.shade]
+    // Ugly relocating, not arsed to find a better way
+    // This won't be published on the mod websites anyway
+    relocate 'com.google', 'worldedit.com.google'
+    relocate 'org.apache', 'worldedit.org.apache'
+    relocate 'org.checkerframework', 'worldedit.org.checkerframework'
+    relocate 'javax.annotation', 'worldedit.javax.annotation'
 }
 
 repositories {

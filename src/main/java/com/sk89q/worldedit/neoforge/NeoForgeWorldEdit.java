@@ -110,7 +110,7 @@ public class NeoForgeWorldEdit {
     private NeoForgeConfiguration config;
     private Path workingDir;
 
-    private ModContainer container;
+    //private ModContainer container;
 
     public NeoForgeWorldEdit(IEventBus modBus, Dist dist) {
         inst = this;
@@ -138,7 +138,7 @@ public class NeoForgeWorldEdit {
     }
 
     private void init(FMLCommonSetupEvent event) {
-        this.container = ModLoadingContext.get().getActiveContainer();
+        //this.container = ModLoadingContext.get().getActiveContainer();
 
         // Setup working directory
         workingDir = FMLPaths.CONFIGDIR.get().resolve("worldedit");
@@ -437,7 +437,8 @@ public class NeoForgeWorldEdit {
      * @return a version string
      */
     String getInternalVersion() {
-        return container.getModInfo().getVersion().toString();
+        //return container.getModInfo().getVersion().toString();
+        return "1.0.0";
     }
 
     public void setPermissionsProvider(NeoForgePermissionsProvider provider) {
